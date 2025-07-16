@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaquine <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 09:57:32 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/16 10:14:05 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/16 11:43:24 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/16 12:51:03 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include <stddef.h>
 
-int	main(int argc, char **argv)
+size_t	ft_strlen(const char *s)
 {
-	(void)argc;
-	printf("%c\n", ft_isalpha('S'));
+	size_t	len;
+
+	len = 0;
+	while (*s)
+	{
+		len++;
+		s++;
+	}
+	return (len);
 }

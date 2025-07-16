@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 09:57:32 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/16 10:14:05 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/16 10:29:36 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/16 11:15:44 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
-
-int	main(int argc, char **argv)
+//Checks wether c is a 7-bit unsigned char value that fits into the ASCII
+//character set.
+int	ft_isascii(int c)
 {
-	(void)argc;
-	printf("%c\n", ft_isalpha('S'));
+	if (c >= 0 && c < 128)
+		return (c);
+	else
+		return (c);
 }

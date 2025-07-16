@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaquine <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 09:57:32 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/16 10:14:05 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/16 11:32:53 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/16 11:37:02 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
-
-int	main(int argc, char **argv)
+int	ft_isprint(int c)
 {
-	(void)argc;
-	printf("%c\n", ft_isalpha('S'));
+	if (c > 31 && c < 128)
+		return (c);
+	else
+		return (0);
 }

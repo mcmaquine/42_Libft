@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaquine <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 09:57:32 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/16 10:14:05 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/16 13:00:06 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/16 13:32:45 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include <stddef.h>
 
-int	main(int argc, char **argv)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	(void)argc;
-	printf("%c\n", ft_isalpha('S'));
+	unsigned char	*dest;
+
+	dest = s;
+	while (n > 0)
+	{
+		*dest = c;
+		n--;
+		dest++;
+	}
+	return (s);
 }
