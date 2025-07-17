@@ -3,18 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaquine <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 09:57:32 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/16 10:14:05 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:34:47 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
+#include "minunit.h"
+#include <stdlib.h>
 #include <stdio.h>
 
-int	main(int argc, char **argv)
+MU_TEST(memmove_n_5)
 {
-	(void)argc;
-	printf("%c\n", ft_isalpha('S'));
+	char	dest[]	= "coding";
+	char	src[]	= "testing";
+	char	*ret;
+
+	char	expect[] = "testig";
+
+	ret = ft_memcpy(dest, src, 5);
+
+	mu_check(ft_strcmp(dest, expect) == 0);
+}
+
+MU_TEST(bzero_t)
+{
+	char	dest[]	= "coding";
+	char	*ret;
+
+	char expect[] = "\0";
+
+	ret = ft_bzero(dest, 5);
+
+	mu_check(ft_strcmp(dest, expect) == 0);
+}
+
+MU_TEST_SUITE(memmove_t)
+{
+	MU_RUN_TEST(memmove_n_5);
+	MU_RUN_TEST(bzero_t);
+}
+
+int	main()
+{
+	MU_RUN_SUITE(memmove_t);
+	MU_REPORT();
+	return MU_EXIT_CODE;
 }
