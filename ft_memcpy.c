@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "libft.h"
 /*
 The function copies n bytes from memory area src to memory area dest. The memory
@@ -18,6 +17,6 @@ area must not overlap.
 */
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-		if ( ((src + n) >= dest) || ((dest + n) >= src)))
-			return (ft_memmove(void *dest, const void *src, size_t n));
+	if (((src + n) >= dest) || ((dest + n) >= src))
+		return (ft_memmove(void *dest, const void *src, size_t n));
 }
