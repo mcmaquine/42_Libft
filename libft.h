@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 14:46:16 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/17 17:40:58 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/18 11:37:38 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
+int		strncmp(const char *s1, const char *s2, size_t n);
+void	*memchr(const void *s, int c, size_t n);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
+char	*ft_strnstr(const char *big, const char *little, size_t len);
 int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

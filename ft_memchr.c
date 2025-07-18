@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:41:17 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/18 11:31:21 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/18 10:24:27 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/18 11:32:50 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-The functon returns a pointer to the last occurrence of the character c in the
-string s. Return NULL if character is not found
-*/
-char	*ft_strrchr(const char *s, int c)
+
+void	*memchr(const void *s, int c, size_t n)
 {
-	char	*last;
-	int		i;
-	
-	last = NULL;
-	i = 0;
-	while(s[i])
+	const unsigned char	*sc;
+	unsigned char		uc;
+
+	uc = ft_isascii(c);
+	if (!uc)
+		return (NULL);
+	sc = s;
+	while (n > 0)
 	{
-		if(s[i] == c)
-			last = (char *)&s[i];
-		i++;
+		if (*sc == uc)
+			return ((void *)sc);
+		n--;
+		sc++;
 	}
-	if (s[i] == c)
-		last = (char *)&s[i];
-	return (last);
+	return (NULL);
 }

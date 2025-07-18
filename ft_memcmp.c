@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:41:17 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/18 11:31:21 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/18 11:04:35 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/18 11:25:40 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-The functon returns a pointer to the last occurrence of the character c in the
-string s. Return NULL if character is not found
-*/
-char	*ft_strrchr(const char *s, int c)
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*last;
-	int		i;
-	
-	last = NULL;
+	const unsigned char	*ts1;
+	const unsigned char	*ts2;
+	int					i;
+
+	ts1 = s1;
+	ts2 = s2;
 	i = 0;
-	while(s[i])
+	while (i < n)
 	{
-		if(s[i] == c)
-			last = (char *)&s[i];
+		if (ts1[i] != ts2[i])
+			break ;
 		i++;
 	}
-	if (s[i] == c)
-		last = (char *)&s[i];
-	return (last);
+	return (ts1[i] - ts2[i]);
 }

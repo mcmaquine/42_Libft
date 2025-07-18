@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:41:17 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/18 11:31:21 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/18 10:15:14 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/18 10:21:00 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-The functon returns a pointer to the last occurrence of the character c in the
-string s. Return NULL if character is not found
-*/
-char	*ft_strrchr(const char *s, int c)
+
+int	strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*last;
-	int		i;
-	
-	last = NULL;
-	i = 0;
-	while(s[i])
+	while ((*s1 == *s2) && (n > 0) && *s1)
 	{
-		if(s[i] == c)
-			last = (char *)&s[i];
-		i++;
+		s1++;
+		s2++;
+		n--;
 	}
-	if (s[i] == c)
-		last = (char *)&s[i];
-	return (last);
+	return (*s1 - *s2);
 }
