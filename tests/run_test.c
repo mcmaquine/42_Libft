@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   run_test.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 09:57:32 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/17 14:34:47 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/18 19:13:26 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/18 19:13:29 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,46 @@
 #include "minunit.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+MU_TEST(test_atoi_42_to_int_42)
+{
+	char	input[] 	=	"42";
+	int		expected	=	42;
+	int		result;
+
+	result = ft_atoi(input);
+	mu_assert_int_eq(expected, result);
+}
+
+MU_TEST(test_atoi_w_space_42_to_int_42)
+{
+	char	input[] 	=	"  42";
+	int		expected	=	42;
+	int		result;
+
+	result = ft_atoi(input);
+	mu_assert_int_eq(expected, result);
+}
+
+MU_TEST(test_atoi_w_special_space_42_to_int_42)
+{
+	char	input[] 	=	" \t 42";
+	int		expected	=	42;
+	int		result;
+
+	result = ft_atoi(input);
+	mu_assert_int_eq(expected, result);
+}
+
+MU_TEST(test_atoi_minus_1_to_int_minus_1)
+{
+	char	input[] 	=	"-1";
+	int		expected	=	-1;
+	int		result;
+
+	result = ft_atoi(input);
+	mu_assert_int_eq(expected, result);
+}
 
 MU_TEST(memmove_n_5)
 {
@@ -43,12 +83,20 @@ MU_TEST(bzero_t)
 MU_TEST_SUITE(memmove_t)
 {
 	MU_RUN_TEST(memmove_n_5);
-	MU_RUN_TEST(bzero_t);
+}
+
+MU_TEST_SUITE(atoi_t)
+{
+	MU_RUN_TEST(test_atoi_42_to_int_42);
+	MU_RUN_TEST(test_atoi_minus_1_to_int_minus_1);
+	MU_RUN_TEST(test_atoi_w_space_42_to_int_42);
+	MU_RUN_TEST(test_atoi_w_special_space_42_to_int_42);
 }
 
 int	main()
 {
 	MU_RUN_SUITE(memmove_t);
+	MU_RUN_SUITE(atoi_t);
 	MU_REPORT();
 	return MU_EXIT_CODE;
 }
