@@ -12,6 +12,12 @@
 
 #include "libft.h"
 
+/*
+The function compares the first n bytes (each interpreted as unsigned char) of
+the memory areas s1 and s2. The return is an integer less than, equal to or,
+grater than zero if the first n bytes of s1 is found, respectively, to be less
+than, to match, or be greater than first n bytes of s2.
+*/
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	const unsigned char	*ts1;
