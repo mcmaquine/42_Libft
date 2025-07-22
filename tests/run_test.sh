@@ -8,6 +8,7 @@ fi
 gcc -static -g run_test_itoa.c -lrt -lm ../libft.a -o itoa
 if [ -f "itoa" ]; then
 	./itoa
+	rm itoa
 else
 	echo "No tests for ft_itoa.\n"
 fi

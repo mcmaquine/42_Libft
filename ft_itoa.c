@@ -35,7 +35,7 @@ static void	ft_getnumber(int n, char *num, size_t *pos)
 	}
 	if (ln < 10)
 	{
-		num[*pos] = ln + '0';
+		num[*pos] = (char)ln + '0';
 		(*pos)++;
 	}
 }
@@ -52,12 +52,27 @@ char	*ft_itoa(int n)
 	if (!nstr)
 		return (NULL);
 	nstr = ft_memcpy(nstr, num, i);
-	nstr[++i] = '\0';
+	nstr[i] = '\0';
 	return (nstr);
 }
 /*
 #include <stdio.h>
+#include <string.h>
+
 int main()
 {
-	printf("%s\n\n", ft_itoa(0));
+	if (!strcmp("42", ft_itoa(42)))
+		printf("Teste 42	OK\n");
+	else
+		printf("Esperado 42, mas %s\n", ft_itoa(42));
+	
+	if (!strcmp("-42", ft_itoa(-42)))
+		printf("Teste -42	OK\n");
+	else
+		printf("Esperado -42, mas %s\n", ft_itoa(42));
+	
+	if (!strcmp("0", ft_itoa(0)))
+		printf("Teste 0	OK\n");
+	else
+		printf("Esperado 0, mas %s\n", ft_itoa(0));
 }*/
