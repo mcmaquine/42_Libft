@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 21:43:18 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/20 21:43:22 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/22 10:24:49 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ char	*ft_strdup(const char *s)
 	dup = (char *)ft_calloc(slen, sizeof(char));
 	if (!dup)
 		return (NULL);
-	dup = ft_strlcpy(dup, s, slen);
+	dup = (char *)ft_memcpy(dup, s, slen);
 	return (dup);
 }

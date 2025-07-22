@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 19:13:26 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/18 19:13:29 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/22 15:08:36 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ MU_TEST(memmove_n_5)
 
 	ret = ft_memcpy(dest, src, 5);
 
-	mu_check(ft_strcmp(dest, expect) == 0);
+	mu_check(ft_strncmp(dest, expect, ft_strlen(expect)) == 0);
 }
 
 MU_TEST(bzero_t)
@@ -156,7 +156,37 @@ MU_TEST(bzero_t)
 
 	ret = ft_bzero(dest, 5);
 
-	mu_check(ft_strcmp(dest, expect) == 0);
+	mu_check(ft_strncmp(dest, expect, 1) == 0);
+}
+
+MU_TEST(test_NULL_string)
+{
+	mu_assert_int_eq(0, ft_strlen(NULL));
+}
+
+MU_TEST(test_void_string)
+{
+	mu_assert_int_eq(0, ft_strlen(""));
+}
+
+MU_TEST(test_strjoin_both_NULL)
+{
+	mu_assert_string_eq("\0", ft_strjoin(NULL, NULL));
+}
+
+MU_TEST(test_strjoin_s1_void_s2_NULL)
+{
+	mu_assert_string_eq("", ft_strjoin("", NULL));
+}
+
+MU_TEST(test_strjoin_s1_NULL_s2_void)
+{
+	mu_assert_string_eq("", ft_strjoin(NULL, ""));
+}
+
+MU_TEST(test_strjoin_two_strings)
+{
+	mu_assert_string_eq("forty-two", ft_strjoin("forty-", "two"));
 }
 
 MU_TEST_SUITE(memmove_t)
@@ -185,10 +215,28 @@ MU_TEST_SUITE(atoi_t)
 	MU_RUN_TEST(test_atoi_INT_MIN);
 }
 
+MU_TEST_SUITE(strlen_t)
+{
+	MU_RUN_TEST(test_NULL_string);
+	MU_RUN_TEST(test_void_string);
+}
+
+MU_TEST_SUITE(ft_strjoin_t)
+{
+	MU_RUN_TEST(test_strjoin_both_NULL);
+	MU_RUN_TEST(test_strjoin_s1_void_s2_NULL);
+	MU_RUN_TEST(test_strjoin_s1_NULL_s2_void);
+	MU_RUN_TEST(test_strjoin_two_strings);
+}
+
+
 int	main()
 {
 	MU_RUN_SUITE(memmove_t);
 	MU_RUN_SUITE(atoi_t);
+	MU_RUN_SUITE(strlen_t);
+	MU_RUN_SUITE(ft_strjoin_t);
 	MU_REPORT();
+	
 	return MU_EXIT_CODE;
 }

@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:36:08 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/18 13:20:20 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/22 14:36:56 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
+
 	if (!ft_strlen(little))
 		return ((char *)big);
-
 	i = 0;
 	while (i < len)
 	{

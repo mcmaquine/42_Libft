@@ -1,34 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 17:41:17 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/22 14:38:09 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/22 10:06:38 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/22 14:35:46 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-The functon returns a pointer to the last occurrence of the character c in the
-string s. Return NULL if character is not found
-*/
-char	*ft_strrchr(const char *s, int c)
-{
-	char	*last;
-	int		i;
 
-	last = NULL;
+static void	ft_cpy(char *tojoin, char const *s, size_t *j)
+{
+	size_t	i;
+
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == c)
-			last = (char *)&s[i];
+		tojoin[*j] = s[i];
 		i++;
+		(*j)++;
 	}
-	if (s[i] == c)
-		last = (char *)&s[i];
-	return (last);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*joined;
+	size_t	j;
+
+	joined = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!joined)
+		return (NULL);
+	j = 0;
+	if (s1 != NULL)
+		ft_cpy(joined, s1, &j);
+	if (s2 != NULL)
+		ft_cpy(joined, s2, &j);
+	joined[j] = '\0';
+	return (joined);
 }

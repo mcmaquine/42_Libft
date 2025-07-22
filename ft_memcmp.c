@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:04:35 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/18 11:25:40 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/22 10:30:56 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	const unsigned char	*ts1;
 	const unsigned char	*ts2;
-	int					i;
+	size_t				i;
 
 	ts1 = s1;
 	ts2 = s2;
