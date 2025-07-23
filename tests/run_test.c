@@ -6,14 +6,12 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 19:13:26 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/22 15:08:36 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:03:24 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 #include "minunit.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 MU_TEST(test_atoi_42_to_int_42)
 {
@@ -134,6 +132,30 @@ MU_TEST(test_atoi_INT_MIN)
 	mu_assert_int_eq(atoi(input), ft_atoi(input));
 }
 
+MU_TEST(test_itoa_0)
+{
+	char	expected[] = "0";
+	char	*result = ft_itoa(0);
+	mu_assert_string_eq(expected, result);
+	free(result);
+}
+
+MU_TEST(test_itoa_forty_two)
+{
+	char	expected[] = "42";
+	char	*result = ft_itoa(42);
+	mu_assert_string_eq(expected, result);
+	free(result);
+}
+
+MU_TEST(test_itoa_minus_forty_two)
+{
+	char	expected[] = "-42";
+	char	*result = ft_itoa(-42);
+	mu_assert_string_eq(expected, result);
+	free(result);
+}
+
 MU_TEST(memmove_n_5)
 {
 	char	dest[]	= "coding";
@@ -189,6 +211,56 @@ MU_TEST(test_strjoin_two_strings)
 	mu_assert_string_eq("forty-two", ft_strjoin("forty-", "two"));
 }
 
+MU_TEST(test_s_void)
+{
+	mu_assert_string_eq("", ft_substr("", 0, 1));
+}
+
+MU_TEST(test_s_NULL)
+{
+	mu_check( NULL == ft_substr(NULL, 1, 1));
+}
+
+MU_TEST(test_start_greater_than_len_s)
+{
+	mu_check( NULL == ft_substr("42campus", 10, 5));
+}
+
+MU_TEST(test_s_len_lower_than_len_and_start_less_than_s)
+{
+	mu_assert_string_eq("saopaulo", ft_substr("42campussaopaulo", 8, 20));
+}
+
+MU_TEST(test_s_len_higher_than_len_and_start_less_than_s)
+{
+	mu_assert_string_eq("campus", ft_substr("42campussaopaulo",2,6));
+}
+
+MU_TEST(test_s1_NULL)
+{
+	mu_assert_string_eq(NULL, ft_strtrim(NULL, "asmp"));
+}
+
+MU_TEST(test_set_NULL)
+{
+	mu_assert_string_eq("42campus", ft_strtrim("42campus", NULL));
+}
+
+MU_TEST(test_s1_void)
+{
+	mu_assert_string_eq("", ft_strtrim("", "asmp"));
+}
+
+MU_TEST(test_set_void)
+{
+	mu_assert_string_eq("42campus", ft_strtrim("42campus", ""));
+}
+
+MU_TEST(test_non_void_both_s1_and_set)
+{
+	mu_assert_string_eq("42cuoulo", ft_strtrim("42campussaopaulo", "asmp"));
+}
+
 MU_TEST_SUITE(memmove_t)
 {
 	MU_RUN_TEST(memmove_n_5);
@@ -215,6 +287,13 @@ MU_TEST_SUITE(atoi_t)
 	MU_RUN_TEST(test_atoi_INT_MIN);
 }
 
+MU_TEST_SUITE(ft_itoa_t)
+{
+	MU_RUN_TEST(test_itoa_0);
+	MU_RUN_TEST(test_itoa_minus_forty_two);
+	MU_RUN_TEST(test_itoa_forty_two);
+}
+
 MU_TEST_SUITE(strlen_t)
 {
 	MU_RUN_TEST(test_NULL_string);
@@ -229,13 +308,40 @@ MU_TEST_SUITE(ft_strjoin_t)
 	MU_RUN_TEST(test_strjoin_two_strings);
 }
 
+MU_TEST_SUITE(ft_substr_t)
+{
+	MU_RUN_TEST(test_s_void);
+	MU_RUN_TEST(test_s_NULL);
+	MU_RUN_TEST(test_start_greater_than_len_s);
+	MU_RUN_TEST(test_s_len_lower_than_len_and_start_less_than_s);
+	MU_RUN_TEST(test_s_len_higher_than_len_and_start_less_than_s);
+}
+
+MU_TEST_SUITE(ft_strtrim_t)
+{
+	MU_RUN_TEST(test_s1_NULL);
+	MU_RUN_TEST(test_set_NULL);
+	MU_RUN_TEST(test_s1_void);
+	MU_RUN_TEST(test_set_void);
+	MU_RUN_TEST(test_non_void_both_s1_and_set);
+}
 
 int	main()
 {
-	MU_RUN_SUITE(memmove_t);
-	MU_RUN_SUITE(atoi_t);
+	ft_putendl_fd("Testing ft_strlen...", 1);
 	MU_RUN_SUITE(strlen_t);
+	ft_putendl_fd("\nTesting ft_memcpy...", 1);
+	MU_RUN_SUITE(memmove_t);
+	ft_putendl_fd("\nTesting ft_atoi...", 1);
+	MU_RUN_SUITE(atoi_t);
+	ft_putendl_fd("\nTesting ft_itoa...", 1);
+	MU_RUN_SUITE(ft_itoa_t);
+	ft_putendl_fd("\nTesting ft_strjoin...", 1);
 	MU_RUN_SUITE(ft_strjoin_t);
+	ft_putendl_fd("\nTesting ft_substr...", 1);
+	MU_RUN_SUITE(ft_substr_t);
+	ft_putendl_fd("\nTesting ft_subtrim...", 1);
+	MU_RUN_SUITE(ft_strtrim_t);
 	MU_REPORT();
 	
 	return MU_EXIT_CODE;

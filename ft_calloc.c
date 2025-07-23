@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 21:23:58 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/20 21:24:04 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/23 10:42:35 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (nmemb * size == 0)
 		return (malloc(sizeof(void *)));
 	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
 	ptr = ft_bzero(ptr, nmemb * size);
 	return (ptr);
 }
