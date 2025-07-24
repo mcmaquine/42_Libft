@@ -156,6 +156,38 @@ MU_TEST(test_itoa_minus_forty_two)
 	free(result);
 }
 
+MU_TEST(get_string_42)
+{
+	char	**split = ft_split("   42  sao  paulo",' ');
+	mu_assert_string_eq("42", split[0]);
+	free(split);
+}
+
+MU_TEST(get_string_sao)
+{
+	char	**split = ft_split("   42  sao  paulo",' ');
+	mu_assert_string_eq("sao", split[1]);
+	free(split);
+}
+
+MU_TEST(get_string_paulo)
+{
+	char	**split = ft_split("   42  sao  paulo",' ');
+	mu_assert_string_eq("paulo", split[2]);
+	free(split);
+}
+
+MU_TEST(full_split)
+{
+	char	**split = ft_split("   42  sao  paulo",' ');
+	size_t	len = 0;
+
+	while (split[len] != NULL)
+		len++;
+	mu_assert_int_eq(3, len);
+	free(split);
+}
+
 MU_TEST(memmove_n_5)
 {
 	char	dest[]	= "coding";
@@ -326,6 +358,14 @@ MU_TEST_SUITE(ft_strtrim_t)
 	MU_RUN_TEST(test_non_void_both_s1_and_set);
 }
 
+MU_TEST_SUITE(ft_split_t)
+{
+	MU_RUN_TEST(get_string_42);
+	MU_RUN_TEST(get_string_sao);
+	MU_RUN_TEST(get_string_paulo);
+	MU_RUN_TEST(full_split);
+}
+
 int	main()
 {
 	ft_putendl_fd("Testing ft_strlen...", 1);
@@ -342,6 +382,8 @@ int	main()
 	MU_RUN_SUITE(ft_substr_t);
 	ft_putendl_fd("\nTesting ft_subtrim...", 1);
 	MU_RUN_SUITE(ft_strtrim_t);
+	ft_putendl_fd("\nTesting ft_split...", 1);
+	MU_RUN_SUITE(ft_split_t);
 	MU_REPORT();
 	
 	return MU_EXIT_CODE;

@@ -18,14 +18,5 @@ location pointed to by s, by writing zeros (bytes containing '\0') to that area
 */
 void	*ft_bzero(void *s, size_t n)
 {
-	unsigned char	*src;
-
-	src = s;
-	while (n > 0)
-	{
-		*src = '\0';
-		src++;
-		n--;
-	}
-	return (s);
+	return (ft_memset(s, '\0', n));
 }

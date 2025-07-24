@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "./tests/minunit.h"
 
 static size_t count_str(const char *s, char c)
 {
@@ -33,7 +32,25 @@ static size_t count_str(const char *s, char c)
 	return (count);
 }
 
-static char	*get_string(const char *s, char c, size_t *)
+static char	*get_string(const char *s, char c, size_t *next)
+{
+	size_t	start;
+	size_t	end;
+	char	*string;
+
+	while (s[*next] && (s[*next] == c))
+		(*next)++;
+	start = (*next);
+	while (s[*next] && (s[*next] != c))
+		(*next)++;
+	end = (*next);
+	string = (char *)ft_calloc(end - start + 1, sizeof(char));
+	if (!string)
+		return (NULL);
+	string = ft_memcpy(string, &s[start], end - start);
+	string[end] = '\0';
+	return (string);
+}
 
 char	**ft_split(const char *s, char c)
 {
@@ -56,44 +73,5 @@ char	**ft_split(const char *s, char c)
 		pos++;
 	}
 	split[pos] = NULL;
-}
-
-MU_TEST(string_null)
-{
-	mu_assert_int_eq(0, count_str(NULL, ' '));
-}
-
-MU_TEST(string_void)
-{
-	mu_assert_int_eq(0, count_str("", ' '));
-}
-
-MU_TEST(string_start_with_seps)
-{
-	mu_assert_int_eq(3, count_str("   42 sao paulo", ' '));
-}
-
-MU_TEST(string_with_seps_in_middle)
-{
-	mu_assert_int_eq(5, count_str("meu nome nao e jhonny", ' '));
-}
-
-MU_TEST(with_multiple_seps)
-{
-	mu_assert_int_eq(5, count_str("   meu  nome       nao  e  jhonny     ", ' '));
-}
-
-MU_TEST_SUITE(count_t)
-{
-	MU_RUN_TEST(string_null);
-	MU_RUN_TEST(string_void);
-	MU_RUN_TEST(string_start_with_seps);
-	MU_RUN_TEST(string_with_seps_in_middle);
-	MU_RUN_TEST(with_multiple_seps);
-}
-
-int	main()
-{
-	MU_RUN_SUITE(count_t);
-	MU_REPORT();
+	return (split);
 }
