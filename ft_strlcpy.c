@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 19:58:03 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/18 11:25:57 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/24 17:19:42 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Copy the input string into a destination string. If the destination buffer,
 limited by its size, isn't large enough to hold the copy, the resulting string
 is truncated (but it is guaranteed to be null-terminated).
 */
-size_t	strlcpy(char *dst, const char *src, size_t dsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dsize)
 {
 	size_t	i;
 

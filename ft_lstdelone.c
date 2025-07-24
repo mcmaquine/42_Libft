@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 10:24:27 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 17:33:18 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/24 15:29:50 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/24 15:40:54 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memchr(const void *s, int c, size_t n)
+#include "libft_bonus.h"
+/*
+Takes a node as parameter and frees its content using the function 'del'. Free
+the node itself but does NOT free the next node.
+lst: The node to free.
+del: The address of the function used to delete the content.
+*/
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	size_t	i;
-	unsigned char	*us;
-	unsigned char	uc;
-
-	i = 0;
-	us = (void *)s;
-	uc = (unsigned char)c;
-	while (n > 0)
-	{
-		if (us[i] == uc)
-			return ((void *)&us[i]);
-		n--;
-		i++;
-	}
-	return (NULL);
+	(*del)(lst->content);
+	free(lst);
 }

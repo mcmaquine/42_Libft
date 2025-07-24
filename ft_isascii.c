@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 10:29:36 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/18 10:43:41 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/24 17:58:10 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_isascii(int c)
 {
 	if (c >= 0 && c < 128)
-		return (c);
+		return (1);
 	else
 		return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:32:53 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/16 11:37:02 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/24 17:54:41 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	if (c > 31 && c < 128)
+	if (c > 31 && c < 127)
 		return (c);
 	else
 		return (0);

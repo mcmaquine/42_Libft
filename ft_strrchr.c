@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:41:17 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/22 14:38:09 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/24 18:08:35 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strrchr(const char *s, int c)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == c)
+		if (s[i] == (char)c)
 			last = (char *)&s[i];
 		i++;
 	}

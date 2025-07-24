@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 10:24:27 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 17:33:18 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/24 14:51:49 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/24 15:57:24 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memchr(const void *s, int c, size_t n)
+#include "libft_bonus.h"
+/*
+Adds the node 'new' at the end of the list.
+lst: The address of a pointer to the first node of a list.
+new: The address of a pointer to the node to be added.
+*/
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t	i;
-	unsigned char	*us;
-	unsigned char	uc;
+	t_list	*nxt;
 
-	i = 0;
-	us = (void *)s;
-	uc = (unsigned char)c;
-	while (n > 0)
-	{
-		if (us[i] == uc)
-			return ((void *)&us[i]);
-		n--;
-		i++;
-	}
-	return (NULL);
+	nxt = (*lst);
+	while (nxt != NULL)
+		nxt = nxt->next;
+	nxt->next = new;
 }

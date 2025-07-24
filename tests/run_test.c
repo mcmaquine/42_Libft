@@ -6,12 +6,49 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 19:13:26 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/23 16:03:24 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/24 13:42:33 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 #include "minunit.h"
+
+void	to_upper_if_even(unsigned int i, char *c)
+{
+	if (i % 2 == 0 && (*c >= 'a' && *c <= 'z'))
+		*c = *c ^ 0x20;	
+}
+
+void	change_case_if_odd(unsigned int i, char *c)
+{
+	if (i % 2 != 0 && ((*c >= 'a' && *c <= 'z') || (*c >= 'A' && *c <= 'Z')))
+		*c = *c ^ 0x20;
+}
+
+MU_TEST(bzero_NULL)
+{
+	mu_check(NULL == ft_bzero(NULL, 4));
+}
+
+MU_TEST(bzero_4)
+{
+	int	v[] = {1, 5, 6};
+	
+	int *z = ft_bzero(&v[1], sizeof(int));
+	mu_check(v[0] == 1 && v[1] == 0 && v[2] == 6);
+}
+
+MU_TEST(bzero_2)
+{
+	char	dest[]	= "coding";
+	char	*ret;
+
+	char expect[] = "\0";
+
+	ret = ft_bzero(dest, 5);
+
+	mu_check(ft_strncmp(dest, expect, 1) == 0);
+}
 
 MU_TEST(test_atoi_42_to_int_42)
 {
@@ -201,18 +238,6 @@ MU_TEST(memmove_n_5)
 	mu_check(ft_strncmp(dest, expect, ft_strlen(expect)) == 0);
 }
 
-MU_TEST(bzero_t)
-{
-	char	dest[]	= "coding";
-	char	*ret;
-
-	char expect[] = "\0";
-
-	ret = ft_bzero(dest, 5);
-
-	mu_check(ft_strncmp(dest, expect, 1) == 0);
-}
-
 MU_TEST(test_NULL_string)
 {
 	mu_assert_int_eq(0, ft_strlen(NULL));
@@ -293,6 +318,42 @@ MU_TEST(test_non_void_both_s1_and_set)
 	mu_assert_string_eq("42cuoulo", ft_strtrim("42campussaopaulo", "asmp"));
 }
 
+MU_TEST(striteri_to_upper_even)
+{
+	char	str[] = "sao paulo";
+	
+	ft_striteri(str, to_upper_if_even);
+	mu_assert_string_eq("SaO PaUlO", str);
+}
+
+MU_TEST(striteri_change_case_if_odd)
+{
+	char	str[] = "sao paulo";
+
+	ft_striteri(str, change_case_if_odd);
+	mu_assert_string_eq("sAo pAuLo", str);
+}
+
+MU_TEST(striteri_f_null)
+{
+	char	str[] = "42";
+	
+	ft_striteri(str, NULL);
+	mu_assert_string_eq("42", str);
+}
+
+/************************************************************
+//			
+//						TEST SUITS
+//
+//*************************************************************/
+MU_TEST_SUITE(bzero_t)
+{
+	MU_RUN_TEST(bzero_NULL);
+	MU_RUN_TEST(bzero_2);
+	MU_RUN_TEST(bzero_4);
+}
+
 MU_TEST_SUITE(memmove_t)
 {
 	MU_RUN_TEST(memmove_n_5);
@@ -366,9 +427,18 @@ MU_TEST_SUITE(ft_split_t)
 	MU_RUN_TEST(full_split);
 }
 
-int	main()
+MU_TEST_SUITE(ft_striteri_t)
 {
-	ft_putendl_fd("Testing ft_strlen...", 1);
+	MU_RUN_TEST(striteri_f_null);
+	MU_RUN_TEST(striteri_to_upper_even);
+	MU_RUN_TEST(striteri_change_case_if_odd);
+}
+
+void	mandatory()
+{
+	ft_putendl_fd("Testing ft_bzero...", 1);
+	MU_RUN_SUITE(bzero_t);
+	ft_putendl_fd("\nTesting ft_strlen...", 1);
 	MU_RUN_SUITE(strlen_t);
 	ft_putendl_fd("\nTesting ft_memcpy...", 1);
 	MU_RUN_SUITE(memmove_t);
@@ -384,7 +454,27 @@ int	main()
 	MU_RUN_SUITE(ft_strtrim_t);
 	ft_putendl_fd("\nTesting ft_split...", 1);
 	MU_RUN_SUITE(ft_split_t);
+	ft_putendl_fd("\nTesting ft_striteri...", 1);
+	MU_RUN_SUITE(ft_striteri_t);
 	MU_REPORT();
-	
+}
+
+void bonus()
+{
+	mandatory();
+	//Must implement tests for bonus
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc == 1)
+		mandatory();
+	else if (argc == 2)
+	{
+		if (atoi(argv[1]) == 1)
+			bonus();
+		else
+			ft_putendl_fd("\nOption invalid", 1);
+	}
 	return MU_EXIT_CODE;
 }

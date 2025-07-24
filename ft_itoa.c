@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:33:48 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/22 16:50:22 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:34:48 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,3 @@ char	*ft_itoa(int n)
 	nstr[i] = '\0';
 	return (nstr);
 }
-/*
-#include <stdio.h>
-#include <string.h>
-
-int main()
-{
-	if (!strcmp("42", ft_itoa(42)))
-		printf("Teste 42	OK\n");
-	else
-		printf("Esperado 42, mas %s\n", ft_itoa(42));
-	
-	if (!strcmp("-42", ft_itoa(-42)))
-		printf("Teste -42	OK\n");
-	else
-		printf("Esperado -42, mas %s\n", ft_itoa(42));
-	
-	if (!strcmp("0", ft_itoa(0)))
-		printf("Teste 0	OK\n");
-	else
-		printf("Esperado 0, mas %s\n", ft_itoa(0));
-}*/

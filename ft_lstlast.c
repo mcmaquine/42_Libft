@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 10:24:27 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 17:33:18 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/24 14:43:05 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/24 15:59:51 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memchr(const void *s, int c, size_t n)
+#include "libft_bonus.h"
+/*
+Retuns the last node of the list.
+lst: The beginning of the list.
+Return the last node of the list.
+*/
+t_list	*ft_lstlast(t_list *lst)
 {
-	size_t	i;
-	unsigned char	*us;
-	unsigned char	uc;
-
-	i = 0;
-	us = (void *)s;
-	uc = (unsigned char)c;
-	while (n > 0)
-	{
-		if (us[i] == uc)
-			return ((void *)&us[i]);
-		n--;
-		i++;
-	}
-	return (NULL);
+	t_list	*nxt;
+	
+	nxt = lst;
+	while (nxt->next != NULL)
+		nxt = nxt->next;
+	return (nxt);
 }

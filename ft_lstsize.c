@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 10:24:27 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 17:33:18 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/24 14:36:13 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/24 16:41:52 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memchr(const void *s, int c, size_t n)
+#include "libft_bonus.h"
+/*
+Counts the number of nodes in the list
+lst: The beginnig of the list.
+Return the length of the list.
+*/
+int	ft_lstsize(t_list *lst)
 {
-	size_t	i;
-	unsigned char	*us;
-	unsigned char	uc;
+	int		l_size;
+	t_list	*nxt;
 
-	i = 0;
-	us = (void *)s;
-	uc = (unsigned char)c;
-	while (n > 0)
+	l_size = 0;
+	nxt = lst;
+	while (nxt != NULL)
 	{
-		if (us[i] == uc)
-			return ((void *)&us[i]);
-		n--;
-		i++;
+		l_size++;
+		nxt = nxt->next;
 	}
-	return (NULL);
+	return (l_size);
 }

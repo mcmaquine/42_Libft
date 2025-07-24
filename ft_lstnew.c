@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 10:24:27 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 17:33:18 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/24 14:07:11 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/24 14:16:33 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memchr(const void *s, int c, size_t n)
+#include "libft_bonus.h"
+/*
+Allocates memory (using malloc(3)) and returns a new node. The 'content' member
+varaiable is initialized with the given parameter 'content'. The varible 'next'
+is initialized to NULL
+*/
+t_list	*ft_lstnew(void *content)
 {
-	size_t	i;
-	unsigned char	*us;
-	unsigned char	uc;
+	t_list	*newNode;
 
-	i = 0;
-	us = (void *)s;
-	uc = (unsigned char)c;
-	while (n > 0)
-	{
-		if (us[i] == uc)
-			return ((void *)&us[i]);
-		n--;
-		i++;
-	}
-	return (NULL);
+	newNode = (t_list *)malloc(sizeof(t_list));
+	if (!newNode)
+		return (NULL);
+	newNode -> content = content;
+	return (newNode);
 }

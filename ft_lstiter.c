@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 10:24:27 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 17:33:18 by mmaquine         ###   ########.fr       */
+/*   Created: 2025/07/24 16:03:51 by mmaquine          #+#    #+#             */
+/*   Updated: 2025/07/24 16:17:09 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memchr(const void *s, int c, size_t n)
+#include "libft_bonus.h"
+/*
+Iterates through the list 'lst' and applies the function 'f' to the content of
+each node
+lst: The address of a pointer to a node.
+f: The address of the function to apply to each node's content
+*/
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	i;
-	unsigned char	*us;
-	unsigned char	uc;
+	t_list	*nxt;
 
-	i = 0;
-	us = (void *)s;
-	uc = (unsigned char)c;
-	while (n > 0)
+	nxt = lst;
+	while (nxt != NULL)
 	{
-		if (us[i] == uc)
-			return ((void *)&us[i]);
-		n--;
-		i++;
+		(*f)(nxt->content);
+		nxt = nxt->next;
 	}
-	return (NULL);
 }
