@@ -20,7 +20,7 @@ WFLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(OBJS): $(SRC)
-	gcc $(WFLAGS) $(SRC) -g -c
+	cc $(WFLAGS) $(SRC) -g -c
 
 $(NAME): $(OBJS)
 	ar -rc $@ $(OBJS)

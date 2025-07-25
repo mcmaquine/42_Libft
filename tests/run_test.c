@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 19:13:26 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 13:42:33 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/25 13:33:59 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,6 +318,77 @@ MU_TEST(test_non_void_both_s1_and_set)
 	mu_assert_string_eq("42cuoulo", ft_strtrim("42campussaopaulo", "asmp"));
 }
 
+MU_TEST(ft_calloc_both_0)
+{
+	void	*ptr;
+	ptr = ft_calloc(0, 0);
+	mu_check(ptr != NULL);
+	free(ptr);
+}
+
+MU_TEST(ft_calloc_0_5)
+{
+	void *ptr;
+	ptr = ft_calloc(0, 5);
+	mu_check(ptr != NULL);
+	free(ptr);
+}
+
+MU_TEST(ft_calloc_5_0)
+{
+	void *ptr;
+	ptr = ft_calloc(5, 0);
+	mu_check(ptr != NULL);
+	free(ptr);
+}
+
+MU_TEST(ft_calloc_0_minus_5)
+{
+	void	*ptr;
+	ptr = ft_calloc(0, -5);
+	mu_check( ptr != NULL);
+	free(ptr);
+}
+
+MU_TEST(ft_calloc_minus_5_0)
+{
+	void	*ptr;
+	ptr = ft_calloc(-5, 0);
+	mu_check( ptr != NULL);
+	free(ptr);
+}
+
+MU_TEST(ft_calloc_SIZE_MAX_both)
+{
+	void	*ptr;
+	ptr = ft_calloc(0xffffffffffffffff, 0xffffffffffffffff);
+	mu_check(NULL == ptr);
+}
+
+MU_TEST(ft_calloc_INT_MAX_both)
+{
+	void	*ptr;
+	ptr = ft_calloc(0x7fffffff, 0x7fffffff);
+	mu_check(ptr == NULL);
+}
+
+MU_TEST(ft_calloc_minus_5_both)
+{
+	void	*ptr;
+	ptr = ft_calloc(-5,-5);
+	mu_check(NULL == ptr);
+}
+
+MU_TEST(ft_calloc_3_minus_5)
+{
+	mu_check(ft_calloc(3, -5) == NULL);
+}
+
+MU_TEST(ft_calloc_minus_5_3)
+{
+	mu_check(ft_calloc(-5, 3) == NULL);
+}
+
 MU_TEST(striteri_to_upper_even)
 {
 	char	str[] = "sao paulo";
@@ -427,6 +498,21 @@ MU_TEST_SUITE(ft_split_t)
 	MU_RUN_TEST(full_split);
 }
 
+MU_TEST_SUITE(ft_calloc_t)
+{
+	MU_RUN_TEST(ft_calloc_both_0);
+	MU_RUN_TEST(ft_calloc_0_5);
+	MU_RUN_TEST(ft_calloc_5_0);
+	MU_RUN_TEST(ft_calloc_0_minus_5);
+	MU_RUN_TEST(ft_calloc_minus_5_0);
+	MU_RUN_TEST(ft_calloc_SIZE_MAX_both);
+	MU_RUN_TEST(ft_calloc_minus_5_both);
+	MU_RUN_TEST(ft_calloc_INT_MAX_both);
+	MU_RUN_TEST(ft_calloc_minus_5_both);
+	MU_RUN_TEST(ft_calloc_3_minus_5);
+	MU_RUN_TEST(ft_calloc_minus_5_3);
+}
+
 MU_TEST_SUITE(ft_striteri_t)
 {
 	MU_RUN_TEST(striteri_f_null);
@@ -454,6 +540,8 @@ void	mandatory()
 	MU_RUN_SUITE(ft_strtrim_t);
 	ft_putendl_fd("\nTesting ft_split...", 1);
 	MU_RUN_SUITE(ft_split_t);
+	ft_putendl_fd("\nTesting ft_calloc...", 1);
+	MU_RUN_SUITE(ft_calloc_t);
 	ft_putendl_fd("\nTesting ft_striteri...", 1);
 	MU_RUN_SUITE(ft_striteri_t);
 	MU_REPORT();
@@ -461,7 +549,6 @@ void	mandatory()
 
 void bonus()
 {
-	mandatory();
 	//Must implement tests for bonus
 }
 
