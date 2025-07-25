@@ -21,7 +21,7 @@ static size_t	count_str(const char *s, char c)
 		return (0);
 	pos = 0;
 	count = 0;
-	while (s[pos])
+	while (s[pos])	
 	{
 		if (pos == 0 && (s[pos] != c))
 			count++;
@@ -48,7 +48,6 @@ static char	*get_string(const char *s, char c, size_t *next)
 	if (!string)
 		return (NULL);
 	string = ft_memcpy(string, &s[start], end - start);
-	string[end] = '\0';
 	return (string);
 }
 
