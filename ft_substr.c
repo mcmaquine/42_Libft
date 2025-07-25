@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:55:12 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/23 13:52:35 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/25 14:42:12 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 
 	if (s == NULL)
 		return (NULL);
-	charleft = ft_strlen(&s[start]);
 	if (start > ft_strlen(s))
-		return (NULL);
+		return (ft_calloc(1, sizeof(char)));
+	charleft = ft_strlen(&s[start]);
+	if (charleft > len)
+	charleft = len;
 	sub = ft_calloc(charleft + 1, sizeof(char));
 	st = 0;
 	while (s[start] && (st < len))
@@ -35,6 +37,5 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		st++;
 		start++;
 	}
-	sub[st] = '\0';
 	return (sub);
 }

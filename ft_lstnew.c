@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:07:11 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 14:16:33 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/25 14:41:01 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ is initialized to NULL
 */
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*newNode;
+	t_list	*new_node;
 
-	newNode = (t_list *)malloc(sizeof(t_list));
-	if (!newNode)
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (!new_node)
 		return (NULL);
-	newNode -> content = content;
-	return (newNode);
+	new_node -> content = content;
+	return (new_node);
 }
