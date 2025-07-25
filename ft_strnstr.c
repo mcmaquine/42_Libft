@@ -18,8 +18,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	if (!ft_strlen(little))
 		return ((char *)big);
+	if (!ft_strlen(big) || !len)
+		return (NULL);
 	i = 0;
-	while (i < len)
+	while (i <= len - ft_strlen(little))
 	{
 		if (!ft_strncmp(&big[i], little, ft_strlen(little)))
 			return ((char *)&big[i]);
@@ -27,3 +29,18 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
+/*
+#include "./tests/minunit.h"
+
+MU_TEST(ft_strncmp_1)
+{
+	char haystack[30] = "aaabcabcd";
+
+	mu_assert_string_eq(NULL, ft_strnstr(haystack,"cd", 8));
+}
+
+int	main()
+{
+	MU_RUN_TEST(ft_strncmp_1);
+	MU_REPORT();
+}*/

@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 10:15:14 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/18 13:22:15 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/24 19:27:45 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		s2++;
 		n--;
 	}
+	if (n == 0)
+		return (0);
 	return (*s1 - *s2);
 }
