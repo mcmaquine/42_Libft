@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:55:12 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/25 14:42:12 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/29 11:30:16 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	if (charleft > len)
 	charleft = len;
 	sub = ft_calloc(charleft + 1, sizeof(char));
+	if (!sub)
+		return (NULL);
 	st = 0;
 	while (s[start] && (st < len))
 	{

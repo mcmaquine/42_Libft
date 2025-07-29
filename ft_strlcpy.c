@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 19:58:03 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 17:19:42 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/29 13:14:56 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dsize)
 {
 	size_t	i;
 
-	if (!dst)
-		return (0);
 	i = 0;
 	if (dsize > 0)
 	{

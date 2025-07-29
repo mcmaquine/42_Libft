@@ -6,12 +6,19 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:36:08 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/22 14:36:56 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:58:23 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
+The function locates the first occurrence of the null-terminated string little
+in the string big, where not more than len charactes are searched. Characters
+that appear after a '\0' character are not searched.
+If little is an empty string, big is returned; if little occurs nowhere in big,
+NULL is returned; otherwise a pointer to the first character of the first
+occurrence of little is returned.
+*/
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
@@ -21,26 +28,26 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	if (!ft_strlen(big) || !len)
 		return (NULL);
 	i = 0;
-	while (i <= len - ft_strlen(little))
+	while (i < ft_strlen(big) && i < len)
 	{
 		if (!ft_strncmp(&big[i], little, ft_strlen(little)))
 			return ((char *)&big[i]);
 		i++;
+		if (i + ft_strlen(little) > len)
+			break ;
 	}
 	return (NULL);
 }
+
 /*
-#include "./tests/minunit.h"
-
-MU_TEST(ft_strncmp_1)
+#include <stdio.h>
+#include <bsd/string.h>
+int main()
 {
-	char haystack[30] = "aaabcabcd";
+	char *big = "abcdef";
+	char *little = "abcdefghijklmnop";
+	size_t	max = strlen(big);
 
-	mu_assert_string_eq(NULL, ft_strnstr(haystack,"cd", 8));
-}
-
-int	main()
-{
-	MU_RUN_TEST(ft_strncmp_1);
-	MU_REPORT();
+	printf("%s\n", ft_strnstr(big, little, max));
+	printf("%s\n", strnstr(big, little, max));	
 }*/

@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 11:43:24 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/22 10:49:59 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/29 13:09:31 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	len;
 
-	if (s == NULL)
-		return (0);
 	len = 0;
 	while (*s)
 	{

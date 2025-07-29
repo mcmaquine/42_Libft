@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 09:19:01 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 13:39:35 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/29 11:25:07 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	if (s == NULL || f == NULL)
 		return (NULL);
 	mapped = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!mapped)
+		return (NULL);
 	i = 0;
 	while (s[i])
 	{

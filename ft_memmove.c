@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:45:16 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/17 14:19:08 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/29 13:18:48 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	const unsigned char	*tsrc;
 	unsigned char		*tdest;
 
+	if (dest == NULL && src == NULL)
+		return (dest);
 	temp = (unsigned char *)malloc(n * sizeof(char));
 	if (temp == NULL)
-		return (NULL);
+		return (dest);
 	tsrc = src;
 	tdest = dest;
 	ft_cpy(temp, tsrc, n);

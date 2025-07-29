@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:25:01 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 11:09:20 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/29 10:58:56 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static size_t	count_str(const char *s, char c)
 		return (0);
 	pos = 0;
 	count = 0;
-	while (s[pos])	
+	while (s[pos])
 	{
 		if (pos == 0 && (s[pos] != c))
 			count++;
