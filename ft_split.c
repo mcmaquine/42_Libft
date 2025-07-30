@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:25:01 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/29 10:58:56 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:23:15 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,27 @@ static char	*get_string(const char *s, char c, size_t *next)
 char	**ft_split(const char *s, char c)
 {
 	char	**split;
-	size_t	count;
 	size_t	pos;
 	size_t	next_str_pos;
 
 	if (s == NULL)
 		return (NULL);
-	count = count_str(s, c);
-	split = (char **)malloc((count + 1) * sizeof(char *));
+	split = (char **)ft_calloc((count_str(s, c) + 1), sizeof(char *));
 	if (!split)
 		return (NULL);
 	pos = 0;
 	next_str_pos = 0;
-	while (pos < count)
+	while (pos < count_str(s, c))
 	{
 		split[pos] = get_string(s, c, &next_str_pos);
+		if (!split[pos])
+		{
+			while (pos > 0)
+				free(split[--pos]);
+			free(split);
+			return (NULL);
+		}
 		pos++;
 	}
-	split[pos] = NULL;
 	return (split);
 }

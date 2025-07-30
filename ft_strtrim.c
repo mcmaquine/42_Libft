@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:58:40 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/23 15:33:00 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/30 12:26:05 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,43 +28,42 @@ static char	in_set(char c, const char *set)
 	return (0);
 }
 
-static size_t	count_chars(const char *s1, const char *set)
-{
-	size_t	count;
-	size_t	pos;
-
-	count = 0;
-	pos = 0;
-	while (s1[pos])
-	{
-		if (!in_set(s1[pos], set))
-			count++;
-		pos++;
-	}
-	return (count);
-}
-
+/*
+Allocates memory and returns a copy of 's1' with characters from set removed
+from the beginning and the end.
+Return a trimmed string. NULL if the allocation fails.
+*/
 char	*ft_strtrim(const char *s1, const char *set)
 {
 	char	*trimmed;
 	size_t	pos;
-	size_t	t_pos;
+	size_t	pos_end;
 
+	pos = 0;
 	if (s1 == NULL)
 		return (NULL);
-	pos = 0;
-	t_pos = 0;
-	trimmed = (char *)ft_calloc(count_chars(s1, set) + 1, sizeof(char));
-	if (!trimmed)
-		return (NULL);
-	while (s1[pos])
-	{
-		if (!in_set(s1[pos], set))
-		{
-			trimmed[t_pos] = s1[pos];
-			t_pos++;
-		}
+	while (s1[pos] && in_set(s1[pos], set))
 		pos++;
+	pos_end = ft_strlen(s1);
+	pos_end--;
+	while (pos_end > 0 && in_set(s1[pos_end], set))
+		pos_end--;
+	if (pos_end >= pos)
+	{
+		trimmed = ft_substr(s1, pos, pos_end - pos + 1);
+		return (trimmed);
 	}
-	return (trimmed);
+	else
+		return (ft_strdup((char *)""));
 }
+/*
+#include <stdio.h>
+#include <bsd/string.h>
+int	main()
+{
+	char *s1 = "abcdba";
+	char *set = "acb";
+	char *ret = ft_strtrim(s1, set);
+
+	printf("%s\n", ret);
+}*/

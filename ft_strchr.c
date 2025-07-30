@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:10:47 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 19:26:18 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:11:58 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,19 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *)&s[i]);
 		i++;
 	}
-	if (s[i] == c)
+	if (s[i] == (char)c)
 		return ((char *)&s[i]);
 	else
 		return (NULL);
 }
+
+/*
+#include <stdio.h>
+#include <bsd/string.h>
+int	main()
+{
+	char *s = "teste";
+	
+	printf("%c\n", s[5]);
+	printf("%s\n", ft_strchr(s, 1024));
+}*/
