@@ -19,7 +19,7 @@ f: The address of the function to apply to each node's content
 */
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	while (!lst)
+	while (lst)
 	{
 		(*f)(lst->content);
 		lst = lst->next;
