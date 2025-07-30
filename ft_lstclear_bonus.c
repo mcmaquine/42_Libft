@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 15:42:11 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/25 14:39:03 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/30 17:10:23 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "libft.h"
 /*
 Deletes and frees the given node and all its successors, using the function 
 'del' and free(3). Finally, set the pointer to the list to NULL.
@@ -19,14 +19,17 @@ del: The address of the function used to delete the content of the node.
 */
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*nxt;
-	t_list	*pres;
+	t_list	*l;
+	t_list	*to_del;
 
-	nxt = (*lst);
-	while (nxt != NULL)
+	if (!lst || !del)
+		return ;
+	to_del = (*lst);
+	while (to_del)
 	{
-		pres = nxt;
-		nxt = nxt->next;
-		ft_lstdelone(pres, del);
+		l = to_del->next;
+		ft_lstdelone(to_del, del);
+		to_del = l;
 	}
+	*lst = NULL;
 }

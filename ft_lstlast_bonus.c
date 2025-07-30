@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:43:05 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/25 14:39:41 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/30 16:26:44 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "libft.h"
 /*
 Retuns the last node of the list.
 lst: The beginning of the list.
@@ -18,10 +18,9 @@ Return the last node of the list.
 */
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*nxt;
-
-	nxt = lst;
-	while (nxt->next != NULL)
-		nxt = nxt->next;
-	return (nxt);
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

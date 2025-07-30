@@ -13,11 +13,11 @@ ft_putchar_fd.c	ft_putstr_fd.c	ft_putendl_fd.c	ft_putnbr_fd.c\
 BONUS_SRC = ft_lstadd_back_bonus.c	ft_lstadd_front_bonus.c\
 ft_lstclear_bonus.c	ft_lstdelone_bonus.c	ft_lstiter_bonus.c\
 ft_lstlast_bonus.c	ft_lstmap_bonus.c		ft_lstnew_bonus.c\
-dt_lstsize_bonus.c
+ft_lstsize_bonus.c
 
 OBJS = $(SRC:.c=.o)
 
-BONUS_OBJ = $(BONUS_SRC:.c=.o)
+BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
 INC = $(NAME:.a=.h)
 
@@ -33,9 +33,13 @@ $(NAME): $(OBJS)
 	ar -rc $@ $(OBJS)
 	ranlib $@
 
+.PHONY: bonus
+bonus: $(BONUS_OBJ)
+	@$(MAKE) OBJS="$(OBJS) $(BONUS_OBJS)" SRC="$(SRC) $(BONUS_SRC)"
+
 .PHONY: clean
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 .PHONY: fclean
 fclean: clean

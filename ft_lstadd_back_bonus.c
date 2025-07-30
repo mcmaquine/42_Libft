@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:51:49 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/24 15:57:24 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/30 16:47:05 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "libft.h"
 /*
 Adds the node 'new' at the end of the list.
 lst: The address of a pointer to the first node of a list.
@@ -20,8 +20,13 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*nxt;
 
-	nxt = (*lst);
-	while (nxt != NULL)
-		nxt = nxt->next;
-	nxt->next = new;
+	if (!lst)
+		return ;
+	if (!(*lst))
+		(*lst) = new;
+	else
+	{
+		nxt = ft_lstlast(*lst);
+		nxt->next = new;
+	}
 }
