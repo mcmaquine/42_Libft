@@ -6,22 +6,33 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:45:16 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/29 13:18:48 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/07/31 12:04:59 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_cpy(unsigned char *dst, const unsigned char *src, int size)
+static void	ft_cpy_fw(unsigned char *dt, const unsigned char *sc, size_t size)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < size)
 	{
-		dst[i] = src[i];
+		dt[i] = sc[i];
 		i++;
 	}
+}
+
+static void	ft_cpy_bw(unsigned char *dt, const unsigned char *sc, size_t size)
+{
+	size--;
+	while (size > 0)
+	{
+		*(dt + size) = *(sc + size);
+		size--;
+	}
+	*dt = *sc;
 }
 
 /*
@@ -32,19 +43,24 @@ are then copied fron the temporary array to dest;
 */
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char		*temp;
 	const unsigned char	*tsrc;
 	unsigned char		*tdest;
 
 	if (dest == NULL && src == NULL)
 		return (dest);
-	temp = (unsigned char *)malloc(n * sizeof(char));
-	if (temp == NULL)
-		return (dest);
 	tsrc = src;
 	tdest = dest;
-	ft_cpy(temp, tsrc, n);
-	ft_cpy(tdest, temp, n);
-	free(temp);
+	if (src - dest < (long)n && src - dest >= 0)
+	{
+		ft_cpy_fw(tdest, tsrc, n);
+		return (dest);
+	}
+	else if (dest - src < (long)n && dest - src >= 0)
+	{
+		ft_cpy_bw(tdest, tsrc, n);
+		return (dest);
+	}
+	else
+		ft_memcpy(dest, src, n);
 	return (dest);
 }
