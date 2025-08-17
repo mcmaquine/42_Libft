@@ -6,7 +6,7 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 21:23:58 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/31 18:03:23 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/08/14 17:45:31 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,14 @@ later be successfully passed to free().
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
-	size_t	asize;
+	size_t	total_bytes;
 
-	if (nmemb == 0 || size == 0)
+	total_bytes = nmemb * size;
+	if (!nmemb || !size)
 		return (malloc(sizeof(void *)));
-	if (nmemb == 0 && size == 0)
+	if ((!nmemb && !size) || (nmemb != total_bytes / size))
 		return (NULL);
-	asize = nmemb * size;
-	if (nmemb != asize / size)
-		return (NULL);
-	ptr = malloc(asize);
+	ptr = malloc(total_bytes);
 	if (!ptr)
 		return (NULL);
 	ptr = ft_bzero(ptr, nmemb * size);
