@@ -6,38 +6,29 @@
 /*   By: mmaquine <mmaquine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:06:38 by mmaquine          #+#    #+#             */
-/*   Updated: 2025/07/22 14:35:46 by mmaquine         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:28:40 by mmaquine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_cpy(char *tojoin, char const *s, size_t *j)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		tojoin[*j] = s[i];
-		i++;
-		(*j)++;
-	}
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*joined;
-	size_t	j;
+	char	*str1;
+	char	*str2;
+	char	*start;
 
-	joined = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	str1 = (char *)s1;
+	str2 = (char *)s2;
+	joined = (char *)ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
 	if (!joined)
 		return (NULL);
-	j = 0;
-	if (s1 != NULL)
-		ft_cpy(joined, s1, &j);
-	if (s2 != NULL)
-		ft_cpy(joined, s2, &j);
-	joined[j] = '\0';
-	return (joined);
+	start = joined;
+	while (*str1)
+		*joined++ = *str1++;
+	while (*str2)
+		*joined++ = *str2++;
+	*joined = '\0';
+	return (start);
 }
