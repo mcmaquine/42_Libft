@@ -19,31 +19,24 @@ OBJS = $(SRC:.c=.o)
 
 BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
-INC = $(NAME:.a=.h)
-
 WFLAGS = -Wall -Werror -Wextra
 
-.PHONY: all
+.PHONY: all bonus clean fclean re
 all: $(NAME)
 
-$(OBJS): $(SRC)
-	cc $(WFLAGS) $(SRC) -g -c
+%.o: %.c
+	cc $(WFLAGS) -g -c $< -o $@ 
 
 $(NAME): $(OBJS)
-	ar -rc $@ $(OBJS)
-	ranlib $@
+	ar -rcs $@ $(OBJS)
 
-.PHONY: bonus
-bonus: $(BONUS_OBJ)
-	@$(MAKE) OBJS="$(OBJS) $(BONUS_OBJS)" SRC="$(SRC) $(BONUS_SRC)"
+bonus: $(BONUS_OBJS)
+	ar -rcs $(NAME) $(BONUS_OBJS)
 
-.PHONY: clean
 clean:
 	rm -f $(OBJS) $(BONUS_OBJS)
 
-.PHONY: fclean
 fclean: clean
 	rm -f $(NAME)
 
-.PHONY: re
 re: fclean all
